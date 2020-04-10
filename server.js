@@ -7,9 +7,15 @@ var io = require('socket.io')(http);
 app.use('/css', express.static(path.join(__dirname, 'css')))
 app.use('/font', express.static(path.join(__dirname, 'font')));
 app.use('/img', express.static(path.join(__dirname, 'img')));
+app.use('/js', express.static(path.join(__dirname, 'js')));
+
+app.get('/remote', function(req, res){
+  res.sendFile(__dirname + '/remote.html');
+});
+
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/remote.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 io.on('connection', function(socket) {

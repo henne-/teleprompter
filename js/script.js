@@ -223,7 +223,7 @@
 	};
 
 	function remote_connect(currentRemote) {
-		socket = io.connect('https://promptr.tv', { path: '/remote/socket.io' });
+		socket = io.connect();
 		remote = (currentRemote) ? currentRemote : random_string();
 
 		socket.on('connect', function() {

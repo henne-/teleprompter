@@ -1,4 +1,5 @@
 (function () {
+	const remoteUrl = `${window.location.protocol}//${window.location.host}/remote`;
 	var initPageSpeed = 35,
 	initFontSize = 60,
 	scrollDelay,
@@ -68,6 +69,9 @@
 		} else {
 			clean_teleprompter();
 		}
+
+		// set remote url correctly
+		$('#remote-url').text(remoteUrl);
 
 		// Listen for Key Presses
 		$('#teleprompter').keyup(update_teleprompter);
@@ -228,7 +232,7 @@
 
 		socket.on('connect', function() {
 			socket.emit('connectToRemote', 'REMOTE_' + remote);
-			new QRCode(document.getElementById("qr-code"), 'https://promptr.tv/remote?id=' + remote);
+			new QRCode(document.getElementById("qr-code"), `${remoteUrl}?id=${remote}`);
 			$('.remote-id').text(remote);
 
 			if (!currentRemote) {
